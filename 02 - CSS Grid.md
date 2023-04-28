@@ -28,13 +28,23 @@
 }
 ```
 
-## Shorthand property : grid-row, grid-column
+## grid-row, grid-column
 
 - Shorthand property to above 4 properties to position grid element.
 ```css
 .item-1 {
   grid-row: 1 / 3;  /* start line / end line */
   grid-column: 1/ 4;
+}
+```
+
+## grid-area :
+
+- Even faster Shorthand property than grid-row and grid-column is grid-area.
+- grid-area: row-start col-start row-end col-end;
+```css
+.item-3 {
+  grid-area: 3 / 1 / 5 / 6;  /* row-start col-start row-end col-end */
 }
 ```
 
@@ -49,6 +59,109 @@
   grid-column: span 2;
 }
 ```
+
+## Layering elements on top of each other :
+
+- Using grid we can simply position elements on top of each other.
+- Simply set the z-index higher than others.
+
+```css
+.item-2 {
+  /* grid-area: row-start col-start row-end col-end */
+  grid-area: 2 / 3 / 4 / 6;
+  z-index: 1;
+}
+```
+
+## grid-auto-rows & grid-auto-columns :
+
+- Suppose if the whole grid is filled/ occupied by our elements and then we add another element into our grid container, it is called an "Implicit grid".
+- That element dosen't inherit the values we set for grid-template-rows and columns.
+- "grid-auto-rows" sets the size of any implicit rows that gets created.
+- "grid-auto-columns" sets the size of any implicit columns that gets created.
+
+```css
+.container {
+  display: grid;
+  grid-template-rows: 100px 100px 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  grid-auto-rows: 100px;
+  grid-auto-columns: 100px;
+}
+```
+
+## grid-auto-flow :
+
+- By default, our grid container added a new row to contain the newly added element as an implicit row.
+- But we can change that and make it as an implicit column using "grid-auto-flow: column".
+
+```css
+.container {
+  display: grid;
+  grid-auto-rows: 100px;
+  grid-auto-flow: column;
+}
+```
+
+## Fractional units :
+
+- 1 fr unit represents a fractional value of the available space.
+- It fills out the space equally.
+
+```css
+.container {
+  display: grid;
+  grid-template-rows: 100px 100px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+- If I set the second fr 2 or 3, it will accordingly acquire more space.
+- We can also mix them with other units. Eg: grid-template-columns: 100px 1fr 2fr;
+
+## minmax(min width, max width) :
+
+- When we resize the page, some elements get way thin.
+- So to set the minimum width we use minmax() function.
+
+## repeat() :
+
+- Repeats the row/column given no. of times.
+- It takes 2 arguments : No. of times to be repeated, Size of it.
+
+```css
+.container {
+  display: grid;
+  grid-template-rows: repeat(2, 100px);
+  grid-template-columns: 1fr minmax(100px, 3fr) 1fr;
+}
+```
+
+## grid-gap :
+
+- Adds gap in between elements.
+- Shorthand property for grid-row-gap and grid-column-gap.
+
+## grid-template-area :
+
+- A way of positioning elements in grid without keeping track of rows and columns.
+
+```css
+.container {
+  display: grid;
+  grid-template-rows: 100px 300px 100px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas:
+    "header header"
+    "main aside"
+    "footer footer";
+}
+```
+
+- Each set of double/single quotes represent the row and each value inside of them represent a column.
+- Defines areas within a grid container. These areas can then be referenced when placing a grid item.
+
+---
 
 ## Follow along starter code :
 
