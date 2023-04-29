@@ -161,6 +161,66 @@
 - Each set of double/single quotes represent the row and each value inside of them represent a column.
 - Defines areas within a grid container. These areas can then be referenced when placing a grid item.
 
+## justify-items :
+
+- Aligns all grid items according to the column axis within their defined grid block area.
+
+## align-items :
+
+- Aligns all grid items according to the row axis within their defined grid block area.
+
+```css
+.container {
+  display: grid;
+  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: end;
+}
+```
+
+## justify-self & align-self :
+
+- If we want to align/justify grid items individually, we can use this properties.
+- This will overwrite the justify-items/align-items properties.
+
+```css
+.item-1 {
+  /* width: 200px; */
+  justify-self: start;
+}
+```
+
+## justify-content & align-content :
+
+- Now if you want to move all the grid items w.r.t to their container, use this props.
+- justify-content : align items along the "row-axis"
+- align-content : align items along the "column-axis"
+
+```css
+.container {
+  display: grid;
+  height: 600px;
+  grid-template-rows: repeat(2, 100px);
+  grid-template-columns: repeat(2, 100px);
+  justify-content: space-between;
+  align-content: space-between;
+}
+```
+
+## auto-fit : Create a Responsive grid that requires 0 media queries :
+
+- auto-fit keyword will make items autofit and wrap onto next row creating a responsive grid.
+
+```css
+.container {
+  display: grid;
+  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+```
+
+
 ---
 
 ## Follow along starter code :
