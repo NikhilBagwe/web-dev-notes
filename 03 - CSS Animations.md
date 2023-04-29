@@ -149,3 +149,73 @@ body {
 
 - Provide keyframes for more control on the animation 
 - Allows us to create more complex animations on a frame by frame basis.
+
+## Defining an keyframe animation :
+
+```css
+/* heading is initially present in left side of screen and then slides into its original position */
+
+@keyframes slideInLeft {
+  /* represents the start of animation i.e 0% */
+  from {
+    transform: translateX(-300px);
+  }
+
+  /* represents the end of animation i.e 100% */
+  to {
+    transform: translateX(0);
+  }
+}
+```
+
+## animation properties :
+
+```css
+.heading-1 {
+  animation-name: slideInLeft;
+
+  /* defines how long it takes to animate from 0% to 100% */
+  animation-duration: 1s;
+
+  animation-timing-function: ease-in;
+
+  /* animation will run right on page is loaded */
+  animation-delay: 0s;
+
+  /* defines how many times/laps the animation should run */
+  animation-iteration-count: 1;
+
+  /* defines whether animation should run normal or reverse */
+  animation-direction: normal;
+
+  /* refer docs */
+  animation-fill-mode: none;
+
+  transform: translateX(-150px);
+}
+```
+
+## shorthand prop : animation :
+
+```css
+.heading-1 {
+  animation: slideInLeft 1s ease-in 0s 1 normal both;
+}
+```
+- Lets keep rest of the props at default value. Now it looks cleaner.
+
+```css
+.heading-1 {
+  animation: slideInLeft 1s ease-in;
+}
+```
+
+
+
+
+
+
+
+
+i
+
