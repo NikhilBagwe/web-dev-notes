@@ -210,6 +210,42 @@ body {
 }
 ```
 
+## rotate animation :
+
+```html
+<body>
+    <section>
+      <h1 class="heading-1">Hello, World!</h1>
+      <h3 class="animate rotate">Hello, World!</h3>
+    </section>
+  </body>
+```
+
+```css
+.animate {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate {
+  animation-name: rotate;
+  animation-timing-function: linear;
+
+  /* rotates the element from the top left corner */
+  transform-origin: top left;
+}
+
+```
 
 
 
