@@ -68,7 +68,121 @@ function outer(b) {
 outer("Hello")() // 10 'Hello'
 ```
 
+## 4. Will closure work on nested functions.
 
+- Yes
+
+```js
+function outest() {
+  var c = 100
+  function outer(b) {
+    let a = 10
+    function inner() {
+      console.log(a, b, c)
+    }
+
+    return inner
+  }
+  return outer
+}
+
+var closure = outest()("Hello")
+closure()  // 10 'Hello' 100
+```
+
+## 5. What if there are conflicting Global variable names ?
+
+- The inner() func will still referenece to 'a = 10'.
+- In case, line 'a = 10' was not present, then inner() might have went to global environment to find 'a', where 'a = 20' is present and printed it.
+
+```js
+function outest() {
+  var c = 100
+  function outer(b) {
+    let a = 10
+    function inner() {
+      console.log(a, b, c)
+    }
+
+    return inner
+  }
+  return outer
+}
+
+let a = 20
+
+var closure = outest()("Hello")
+closure()
+```
+
+## 6. Data hiding and Encapsulation :
+
+- Used to make sure nobody in the program can directly access a certain variable/function.
+
+```js
+function counter() {
+  // 'count' is hided and can only be accesed through incrementCounter()
+  var count = 0
+  return function incrementCounter() {
+    count++
+    console.log(count)
+  }
+}
+
+var counter1 = counter()
+counter1() // 1
+counter1() // 2
+```
+- In above example, if we create a new 'counter2' than it will be a fresh counter. It won't affect the values of counter1.
+- The 'incrementCounter() func will form a closure with new independent copy of 'count'.
+
+```js
+function counter() {
+  // 'count' is hided and can only be accesed through incrementCounter()
+  var count = 0
+  return function incrementCounter() {
+    count++
+    console.log(count)
+  }
+}
+
+var counter1 = counter()
+counter1() // 1
+counter1() // 2
+
+var counter2 = counter()
+counter2()
+counter2()
+
+```
+
+## 7. Function Constructor :
+
+- In above counter example, the way we coded it is not a good scalable way of writing code.
+- So use Function Constructor.
+
+```js
+function Counter() {
+  // still the data is hidden
+  var count = 0
+
+  this.incrementCounter = function () {
+    count++
+    console.log(count)
+  }
+  this.decrementCounter = function () {
+    count--
+    console.log(count)
+  }
+}
+
+var counter1 = new Counter()
+counter1.incrementCounter()
+counter1.incrementCounter()
+counter1.decrementCounter()
+
+```
+- Still a closure is formed and our data is hidden.
 
 
 
