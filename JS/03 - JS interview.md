@@ -184,9 +184,47 @@ counter1.decrementCounter()
 ```
 - Still a closure is formed and our data is hidden.
 
+## 8. Disadvantages of closures :
+
+- Over-consumption of memory - As the variables in lexical env. of function are not garbage collected, thus accumulating a lot of memory.
+- If not handled properly, than can lead to memory leaks.
+
+## 9. What is Garbage collector :
+
+- It is a program in the browser or JS engine which frees up the unutilized memory.
+- In programming languages like C/C++, it is upto developer to allocate/deallocate memory. 
+- But in high level prog. lang. like JS we have garbage collector.
+
+## 9. Relation between Closure and Garbage collector :
+
+```js
+function a() {
+  var x = 0
+  return function b() {
+    console.log(x)
+  }
+}
+
+a()
+```
+- So normally when execution of a() is completed, 'var x' could be garbage collected as it is no longer needed.
+- But since, we have b() referencing 'var x' forming a closure, 'var x' won't be deleted.
 
 
+## 10. Smart garbage collection mechanism :
 
+- Modern browsers such as chrome V8 have smart garbage collection mechanism.
+```js
+function a() {
+  var x = 0, z = 10
+  return function b() {
+    console.log(x)
+  }
+}
+
+a()
+```
+- In above eg. even though 'var z' forms closure with b(), it will be deleted as it is not used in func b().
 
 
 
