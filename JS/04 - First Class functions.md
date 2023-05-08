@@ -34,8 +34,8 @@ var b = function () {
   console.log("Function Expression")
 }
 ```
-- Here b() is treated like another variable and undefined is assigned to it.
-- So on trying to call it we get error.
+- Here 'var b' is treated like another variable and undefined is assigned to it.
+- So on trying to call b(), we get error.
 
 
 
