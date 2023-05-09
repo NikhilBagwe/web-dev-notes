@@ -9,7 +9,7 @@
 ## List of JS engines :
 
 - Edge : Chakra
-- Chrome : V8 engine (Written in C++)
+- Chrome : V8 engine (Written in C++) (World's Fastest engine)
 - Firefox : SpiderMonkey ( First ever JS engine created, by Brendon, creator of JS)
 
 ## JS Engine Architectire :
@@ -30,6 +30,21 @@
 -  But nowadays, the Modern browsers use Compiler + Interpreter together called as JIT compilation.
 -  So the AST goes to the Interpreter. It converts it to byte code and sends it for execution. While it is doing so it takes help of 
 compiler to optimize the code.
+- The job of compiler is to optimize the code as much as possible at runtime i.e called JIT.
+
+### Some JS engine have AOT(Ahead Of Time) compilation where the compiler takes a piece of code which is going to be executed later and tries to optimize it as much as it can and also produces the byte code which then goes to Execution phase.
+
+### Execution is not possible w/o 2 major components of JS : Memory stack and Callstack
+
+## Memory heap :
+
+- Memory heap is the place where all variables, functions are assigned memory.
+- It is in sync with Garbage collector and Callstack.
+
+## Garbage collector :
+
+- Tries to free up memory whenever possible.
+- Uses Mark and Sweep alogorithm.
 
 
 
