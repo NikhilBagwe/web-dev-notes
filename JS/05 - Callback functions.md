@@ -22,3 +22,42 @@ x(function y() {})
 - Everything which is executed on the page is executed only through callstack.
 - The callstack must never be blocked.
 - Since JS has callback/ first class funcs, we can perform asynchronous operations.
+
+## Event Listeners :
+
+- An Event Listener, takes the event type and an callback function as params.
+- The callback function is stored somewhere in the memory.
+- When the event is triggered, the callback function automatically comes into the call stack and is executed.
+
+## Forming closure with event listener :
+
+- Attached click event listener to a button and keeping a track of how many times it is been pressed.
+
+```js
+function attachEventListener() {
+  let count = 0
+  document.getElementById("clickme").addEventListener("click", function xyz() {
+    console.log("Button clicked", ++count)
+  })
+}
+
+attachEventListener()
+```
+
+### NOTE : We must remove event listeners. They are very heavy as they consume lot of memory. As in  boave example we formed a closure with event listener. So even when the callstack is free, the memory to store 'count' value is still not garbage collected. Thus we must free them up so the variables can be garbage collected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
