@@ -36,6 +36,12 @@
 - The primary job of a browser engine is to transform HTML documents and other resources of a web page into an interactive visual representation on a user's device.
 - Google originally used WebKit for its Chrome browser but eventually forked it to create the Blink engine.
 
+## Client Server Flow :
+
+- When we send a request to 'www.fb.com', which actually is a domain name.
+- To access the fb server we need IP address of it. So DNS server converts domain name to IP addr then your request goes further. This process is called DNR - Domain Name Resolution.
+- On processing request, server sends a response back.
+
 ---
 
 
