@@ -1,0 +1,24 @@
+## Network :
+
+- A system in which all resources/machines such as computers, printers, laptop etc. are connected is called Network.
+- It can be wired or wireless.
+- When you connect your mobile phone, computer, smart TV, etc. to your wifi router, it forms LAN - Local Area Network.
+- When resources from different states/cities/towns are connected together and can communicate with each other, it forms MAN - Metropolitan Area N/w
+- When resources from different countries are connected together and can communicate with each other, it forms WAN - Wide Area N/w
+
+## Internet :
+
+- Internet is a global sytem where billions of devices are connected with each other.
+- It is a network of networks.
+- It consists of WANs, MANs and LANs connnected to each other.
+
+## WWW :
+
+- World Wide Web -- also known as the web, WWW or W3 -- refers to all the public websites or pages that users can access on their local computers and other devices through the internet. 
+- These pages and documents are interconnected by means of hyperlinks that users click on for information.
+- It is a subset of Internet.
+- In url, it indicates that a given website uses HTTP to communicate.
+
+## IP address :
+
+- It is a unique address through which we can uniquely identify a machine connected to internet.
