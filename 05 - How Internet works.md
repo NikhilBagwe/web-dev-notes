@@ -1,3 +1,7 @@
+# Basic Terminologies :
+
+---
+
 ## Network :
 
 - A system in which all resources/machines such as computers, printers, laptop etc. are connected is called Network.
@@ -22,3 +26,27 @@
 ## IP address :
 
 - It is a unique address through which we can uniquely identify a machine connected to internet.
+
+## Browser :
+
+- It is a tool through which we can access the documents, websites, resources available on Internet.
+
+## Browser engine :
+
+- The primary job of a browser engine is to transform HTML documents and other resources of a web page into an interactive visual representation on a user's device.
+- Google originally used WebKit for its Chrome browser but eventually forked it to create the Blink engine.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
