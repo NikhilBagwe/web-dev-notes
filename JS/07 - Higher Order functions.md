@@ -53,7 +53,14 @@ console.log(calulate(radius, area))
 - What we did is part of Functional programming. Reusability, modularity, using function into another function is part of it.
 - So now 'calculate()' is a HOF and 'area()' is callback function.
 
+### NOTE : In JS map() does the same thing. 
 
+```js
+// returns an array
+
+console.log(radius.map(area))
+```
+- So in above example we wrote our implementation of map() function.
 
 
 
