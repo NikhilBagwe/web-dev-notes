@@ -12,6 +12,7 @@
 
 ## Internet :
 
+- The word Internet is made up of : Inter - stands for Interconnection and Net - Network.
 - Internet is a global sytem where billions of devices are connected with each other.
 - It is a network of networks.
 - It consists of WANs, MANs and LANs connnected to each other.
@@ -44,9 +45,26 @@
 
 ---
 
+## History of Internet :
 
+- Famous project in 1960s named ARPANET of Defense development Department.
+- The objective of the project was to send data from one machine to other by breaking the data down to smaller chunks called as packets.
+- In 1970s the system improved.
+- In 1980s, DNS was created
+- In 1990s online email, messaging, shopping was introduced.
+- Year 2000 was rise was FB and mobile phones.
 
+## How a packet travels over internet ?
 
+- A client sends the request to the ISP. In between the request goes through multiple routers eg: wifi router.
+- Router is a device used to connect multiple networks.
+- Now ISP checks whether it knows the IP addr of the destination server where the request is to be sent.
+- There are diff. types of ISP : Local, Regional, etc.
+- Suppose if your request reaches Local ISP first and it dosen't knows the IP addr of dest. server, it forwards the req. to Regional ISP.
+- If Regional ISP dosen't knows it, the req. is further sent to NSP - National Service provider.
+- Then if NSP knows the IP adde. ot routes the req. accordingly to dest. server.
+
+### NOTE : Every Router has a Routing table where it stores the IP addresses. On receiving a req. it checks whether it has the required IP and if it is present, than routes the req. to that IP. If IP is not present than it forwards the req. to it's  Parent router and so on.
 
 
 
