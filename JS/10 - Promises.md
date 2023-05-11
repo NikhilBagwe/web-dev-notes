@@ -69,6 +69,11 @@ console.log(user)
     [[PromiseResult]]: Response
 ```
 - It shows the promise is 'pending' and on expanding the obj it shows PromiseState is 'fulfilled'.
+- It is because at the time when 'console.log(user)' line is executed, the promise obj is in pending state as JS engine quickly executes everything and logs "Promise {<pending>}".
+- But eventually data comes back to promise obj after sometime and Google chrome thus shows you the current state of Promise as fulfilled.
+- So when JS engine logs the Promise, it is in pending state and by the time you view it in console, it shows fulfilled state.
+
+
 
 
 
