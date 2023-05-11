@@ -44,7 +44,7 @@ promise.then(function (orderId) {
 - Previously we were blindly trusting createOrder() to call the passed callback function whenever it wants.
 - But in case of Promise, we are atttaching the callback function to it. When promise data is available in it's promise obj, then only the callback func is called automatically. This way we have the control of pgm with us.
 - then() will call the callback func just once with 100% gurantee.
-- Promise provides us with high level of Trust as it either can be in pending, fulfilled or rejected state.
+### NOTE : Promise provides us with high level of Trust as it either can be in pending, fulfilled or rejected state.
 
 ## Promise example in Browser :
 
@@ -73,7 +73,7 @@ console.log(user)
 - It shows the promise is 'pending' and on expanding the obj it shows PromiseState is 'fulfilled'.
 - It is because at the time when 'console.log(user)' line is executed, the promise obj is in pending state as JS engine quickly executes everything and logs 
 ```js
-Promise {<pending>}
+> Promise {<pending>}
 ```
 - But eventually data comes back to promise obj after sometime and Google chrome thus shows you the current state of Promise as fulfilled.
 - So when JS engine logs the Promise, it is in pending state and by the time you view it in console, it shows fulfilled state.
@@ -85,6 +85,41 @@ user.then((data) => console.log(data))
 ```
 
 ### NOTE : Promise objects are immutable. So we can pass them around the code, but no one can modify them.
+
+## Promise Chaining :
+
+- When we have one function depended on another function for o/p, it eventually leads to callback hell.
+- Example :
+
+```js
+createOrder(cart, function () {
+  proceedToPayment(orderId)
+})
+```
+- But now we can use Promise and chain the callback functions.
+
+### NOTE : Always 'return' a promise from promise when you are chaining it. Only that way we can get our data properly flown down the chain.
+
+```js
+createOrder(cart)
+  .then(function (orderId) {
+    return proceedToPayment(orderId)
+  })
+  .then(function (paymentInfo) {
+    return showOrderSummary(paymentInfo)
+  })
+  .then(function () {
+    return updateWalletBalance()
+  })
+```
+
+# Interview Questions :
+
+## 1. What is a Promise ?
+
+- Proomise obj is a placeholder for a certain period of time until we receive a value from asynchronous operation.
+- Another def. : A container for the future value.
+- MDN def. : A Promise is an obj representing eventual completion or failure of an async operation.
 
 
 
