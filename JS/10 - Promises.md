@@ -44,6 +44,7 @@ promise.then(function (orderId) {
 - Previously we were blindly trusting createOrder() to call the passed callback function whenever it wants.
 - But in case of Promise, we are atttaching the callback function to it. When promise data is available in it's promise obj, then only the callback func is called automatically. This way we have the control of pgm with us.
 - then() will call the callback func just once with 100% gurantee.
+- Promise provides us with high level of Trust as it either can be in pending, fulfilled or rejected state.
 
 ## Promise example in Browser :
 
@@ -51,7 +52,7 @@ promise.then(function (orderId) {
 - By design, fetch() returns a Promise.
 - There are 2 imp things in a Promise obj : 'State of a Promise : [[PromiseState]]' and 'Result of the Promise : [[PromiseResult]]'
 - [[PromiseResult]] : Stores data that promise returns.
-- [[PromiseState]] : Initially the promise is in 'pending' state. Once it gets the data, it's state changes to 'fulfilled'
+- [[PromiseState]] : Initially the promise is in 'pending' state. Once it gets the data, it's state changes to 'fulfilled' or 'rejected'
 
 ```js
 const GITHUB_API = "https://api.github.com/users/akshaymarch7"
@@ -68,22 +69,22 @@ console.log(user)
     [[PromiseState]]: "fulfilled"
     [[PromiseResult]]: Response
 ```
+
 - It shows the promise is 'pending' and on expanding the obj it shows PromiseState is 'fulfilled'.
-- It is because at the time when 'console.log(user)' line is executed, the promise obj is in pending state as JS engine quickly executes everything and logs "Promise {<pending>}".
+- It is because at the time when 'console.log(user)' line is executed, the promise obj is in pending state as JS engine quickly executes everything and logs 
+```js
+Promise {<pending>}
+```
 - But eventually data comes back to promise obj after sometime and Google chrome thus shows you the current state of Promise as fulfilled.
 - So when JS engine logs the Promise, it is in pending state and by the time you view it in console, it shows fulfilled state.
+- Now you can get the received data using then()
 
+```js
+// Whatever needs to be done once we receive data in promise obj is wriiten inside then()
+user.then((data) => console.log(data))
+```
 
-
-
-
-
-
-
-
-
-
-
+### NOTE : Promise objects are immutable. So we can pass them around the code, but no one can modify them.
 
 
 
