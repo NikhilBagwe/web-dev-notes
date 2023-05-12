@@ -5,6 +5,8 @@
 - The constructor will take 2 parameters : resolve and reject
 - resolve and reject are the 2 functions provided by JS to build promises. They were included in the design of Promise API.
 
+### NOTE : A promise can either be resolved or rejected only once. It cannot be resloved twice or vice versa. Thus, trust of transaction is high.
+
 ```js
 const cart = ["shoes", "pants", "kurta"]
 
@@ -164,7 +166,69 @@ o/p :
 - Using this, we can still continue execution of next then() methods after catch().
 
 
+## Full code :
 
+```js
+const cart = ["shoes", "pants", "kurta"]
+
+function createOrder(cart) {
+  const pr = new Promise(function (resolve, reject) {
+    // Logic for createOrder api - includes validating cart, making calls to DB, etc.
+
+    // If cart is not valid, reject the Promise by throwing error
+    if (!validateCart(cart)) {
+      const err = new Error("Cart is not valid")
+      reject(err)
+    }
+
+    // Lets assume after making a DB call we get orderId
+    const orderId = "12345"
+
+    // If orderId is present than resolve() the promise
+    if (orderId) {
+      // Suppose if we make an API call which takes 5 seconds. So lets intriduce some fake delay
+      setTimeout(function () {
+        resolve(orderId)
+      }, 5000)
+    }
+  })
+
+  return pr
+}
+
+function validateCart(cart) {
+  return false
+}
+
+// const promise = createOrder(cart)
+// console.log(promise) // At this point it will show Promise as pending as it will take 5 seconds to resolve it.
+
+function proceedToPayment(orderId) {
+  // Assume customer made successful payment and then a Resolved Promise is returned.
+
+  return new Promise(function (resolve, reject) {
+    resolve("Payment Successful")
+  })
+}
+
+createOrder(cart)
+  .then(function (orderId) {
+    console.log(orderId)
+    return orderId // IMP! Whatever we return from here will be passed down to next then()
+  })
+  .catch(function (err) {
+    console.log(err.message)
+  })
+  .then(function (orderId) {
+    return proceedToPayment(orderId)
+  })
+  .then(function (paymentInfo) {
+    console.log(paymentInfo)
+  })
+  .then(function () {
+    console.log("No matter what, I will definitely be called")
+  })
+```
 
 
 
