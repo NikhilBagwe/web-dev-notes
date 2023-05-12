@@ -44,3 +44,55 @@ promise.then(function (orderId) {
   console.log(orderId) // After 5 sec we get data into our promise obj and then orderId will be printed .
 })
 ```
+
+## Rejecting a Promise :
+
+- Lets return 'false' in validateCart() and thus reject the promise.
+- On doing so we get an error as follows :
+
+```js
+Uncaught (in promise) Error: Cart is not valid
+    at index.js:9:19
+    at new Promise (<anonymous>)
+    at createOrder (index.js:4:14)
+    at index.js:32:17
+
+```
+- So it shows that we have not handled our exception properly.
+- So error handling must be performed.
+
+## Error handling in Promise : catch()
+
+- Similar to then(). 
+- Using it we can attach a failure callback function to our Promise.
+- then() is called when Promise is 'resolved' and catch() when it's 'rejected'.
+
+```js
+promise
+  .then(function (orderId) {
+    console.log(orderId)
+  })
+  .catch(function (err) {
+    console.log(err.message)  // Cart is not valid
+  })
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
