@@ -122,9 +122,46 @@ createOrder(cart)
 ```
 - But the code looks ugly. So promise api provides us the ability to return the promise from one then() and we can handle it in the next level of chain.
 
+## Advanced Error handling :
 
+- Up until now if any of the then() fails, everything after that fails.
+- But what if we wanted to continue the execution from next then().
+- Suppose in our example if createOrder() fails but we want to go to proceedToPayment().
+- For that we will just move the catch() up the chain, next to the desired then().
+- Now that catch() has only responsibility to check/handle the top of it.
 
+```js
+function validateCart(cart) {
+  return false
+}
 
+createOrder(cart)
+  .then(function (orderId) {
+    console.log(orderId)
+    return orderId // IMP! Whatever we return from here will be passed down to next then()
+  })
+  .catch(function (err) {
+    console.log(err.message)
+  })
+  .then(function (orderId) {
+    return proceedToPayment(orderId)
+  })
+  .then(function (paymentInfo) {
+    console.log(paymentInfo)
+  })
+  .then(function () {
+    console.log("No matter what, I will definitely be called")
+  })
+  
+/* 
+o/p :
+ Cart is not valid
+ Payment Successful
+ No matter what, I will definitely be called
+ */
+```
+- Now even if cart is not valid, still payment was successful.
+- Using this, we can still continue execution of next then() methods after catch().
 
 
 
