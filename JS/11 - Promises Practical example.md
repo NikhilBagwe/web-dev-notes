@@ -76,7 +76,51 @@ promise
     console.log(err.message)  // Cart is not valid
   })
 ```
+- Even though there might be an error in any level of an promise chain, just one catch at the end will handle it.
 
+## Promise chaining :
+
+- After placing the order the customer must be directed to payment page.
+- So now using the orderId we will proceed to payment.
+- proceedToPayment() will return a Promise.
+
+### NOTE : We must 'return' variables/promises for them to be accessable down the promise chain.
+
+```js
+createOrder(cart)
+  .then(function (orderId) {
+    console.log(orderId)
+    return orderId // IMP! Whatever we return from here will be passed down to next then()
+  })
+  .then(function (orderId) {
+    return proceedToPayment(orderId)
+  })
+  .then(function (paymentInfo) {
+    console.log(paymentInfo)
+  })
+  .catch(function (err) {
+    console.log(err.message)
+  })
+```
+- Now when we returned the promsie proceedToPayment(orderId), instead of chaininhg the next .then() next to it, we wrote it on next line. We might have written it as follows:
+
+```js
+createOrder(cart)
+  .then(function (orderId) {
+    console.log(orderId)
+    return orderId // IMP! Whatever we return from here will be passed down to next then()
+  })
+  .then(function (orderId) {
+    return proceedToPayment(orderId).then(function (paymentInfo) {
+      console.log(paymentInfo)
+    })
+  })
+
+  .catch(function (err) {
+    console.log(err.message)
+  })
+```
+- But the code looks ugly. So promise api provides us the ability to return the promise from one then() and we can handle it in the next level of chain.
 
 
 
