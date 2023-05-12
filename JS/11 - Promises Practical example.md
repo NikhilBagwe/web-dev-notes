@@ -230,6 +230,77 @@ createOrder(cart)
   })
 ```
 
+## Homework : Create complete flow of placing an order to updating wallet 
+
+```js
+const cart = ["shoes", "pants", "kurta"]
+
+function createOrder(cart) {
+  const pr = new Promise(function (resolve, reject) {
+    if (!validateCart(cart)) {
+      const err = new Error("Cart is not valid")
+      reject(err)
+    }
+    
+    const orderId = "12345"
+
+    if (orderId) {
+      // Suppose if we make an API call which takes 5 seconds. So lets intriduce some fake delay
+      setTimeout(function () {
+        resolve(orderId)
+      }, 5000)
+    }
+  })
+
+  return pr
+}
+
+function validateCart(cart) {
+  return true
+}
+
+let walletBalance = 1000
+
+function proceedToPayment(orderId) {
+  return new Promise(function (resolve, reject) {
+    resolve(200)
+  })
+}
+
+function showOrderSummary(paymentInfo) {
+  return new Promise(function (resolve, reject) {
+    resolve(paymentInfo)
+  })
+}
+
+function updateWalletBalance(totalAmount) {
+  return new Promise(function (resolve, reject) {
+    walletBalance -= totalAmount
+    resolve(walletBalance)
+  })
+}
+
+createOrder(cart)
+  .then(function (orderId) {
+    console.log(orderId)
+  })
+  .then(function (orderId) {
+    return proceedToPayment(orderId)
+  })
+  .then(function (paymentInfo) {
+    console.log(`Payment Successful of Rs.${paymentInfo}`)
+    return showOrderSummary(paymentInfo)
+  })
+  .then(function (totalAmount) {
+    return updateWalletBalance(totalAmount)
+  })
+  .then(function (walletBalance) {
+    console.log(`Wallet balance : ${walletBalance}`)
+  })
+  .catch(function (err) {
+    console.log(err.message)
+  })
+```
 
 
 
