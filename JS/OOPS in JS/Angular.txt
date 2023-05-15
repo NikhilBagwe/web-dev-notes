@@ -1,0 +1,11 @@
+1. npm install -g @angular/cli
+
+2. ng new todo-list
+   If it gives error then use : Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+3. ng serve : to run your app
+
+4. To create a new component use command: ng generate component comp_name
+1.28.42 min
+
+https://www.youtube.com/watch?v=CGLdH5ORX-Y&ab_channel=OctAcademy 44 min
