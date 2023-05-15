@@ -33,7 +33,11 @@ console.log(arr.__proto__)
 - It is because even 'arr.__proto__' is an object and each and every obj in JS has prototype.
 - So prototype of 'arr.__proto__' is Object prototype.
 
+### In case of array  :
+
 ```js
+let arr = ["nikhil", "raj", "yash"]
+
 // Both are Similar
 console.log(arr.__proto__)
 console.log(Array.prototype)
@@ -48,6 +52,33 @@ console.log(arr.__proto__.__proto__.__proto__)
 - This is what we call Prototype chain.
 - Whenever we create an array, it has it's prototype 'Array.prototype'. Then 'Array.prototype' obj has it's own prototype i.e 'Object.prototype'. Then prototype of 'Object.prototype' is null which is end of the chain.
 
+### In case of function  :
+
+```js
+function fun() {}
+
+console.log(fun.__proto__)
+console.log(Function.prototype)
+
+console.log(fun.__proto__.__proto__) // Object prototype
+
+console.log(fun.__proto__.__proto__.__proto__)  // null
+```
+
+## NOTE : Now we can understand that everything in JS is an object.
+
+## NOTE : Never modify the '__proto__' prototype of an object directly like assign new obj to it. It causes a huge performance issue.
+
+## Adding new function to Function prototype :
+
+```js
+Function.prototype.myFunc = function (){
+  console.log('New func');
+}
+```
+- Now all the functions that we define in our code will have access to above 'myFunc' as now it's part of 'Function prototype'.
+
+## NOTE : __proto__ is written as the way it is, to diffferentiate it from others, a sort of naming convention.
 
 
 
@@ -68,4 +99,4 @@ console.log(arr.__proto__.__proto__.__proto__)
 
 
 
-4
+
