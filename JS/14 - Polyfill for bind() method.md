@@ -84,7 +84,7 @@ printName()
 
 - When we pass multiple arguments, only one is passed.
 - So we have to extract them and pass.
-- Since we are passing an array of args,  we have to use apply() instead of call()
+- Since now we are passing an array of args,  we have to use apply() instead of call()
 
 ```js
 let printFullName = function (hometown) {
@@ -108,7 +108,8 @@ printName()
 
 ## But now suppose an argument needs to be passed in printName() function, our solution won't work.
 
-- This arguments will be recived in the returned function as below.
+- Solution : Arguments passed in printName() function will be recived in the returned function inside mybind() as below.
+- Also since we were already passing params array, now we will need to concatenate the params array with the 'args2' and send them together.
 
 ```js
 Function.prototype.mybind = function (...args) {
@@ -116,7 +117,7 @@ Function.prototype.mybind = function (...args) {
     params = args.slice(1) 
 
   return function (...args2) {  // the args passed in printName() are received here.
-    obj.apply(args[0], params)
+    obj.apply(args[0], [...params, ...args2]) // here we create a larger array by concatenating 'params' and 'args2' and then sent it to apply()
   }
 }
 ```
