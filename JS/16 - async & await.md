@@ -35,10 +35,33 @@ start2()
 - In above example, the execution of function 'start()' pauses at *** line and resumes when the promise settles,
  with result becoming its result. So the code above shows “done” in one second.
  
+ ## Points to remember :
  
+ 1. Any function can be converted to async.
+
+```js
+const me = {
+  async hello() {
+    console.log("hi")
+  },
+}
+
+me.hello() // hi
+```
+
+2. All async functions return a Promise.
+
+```js
+const me = {
+  async hello() {
+    console.log("hi")
+  },
+}
+
+console.log(me.hello())  // Promise {<fulfilled>: undefined}
+```
  
- 
- 
+3. async and await must be used together but "JS modules and Chrome DevTools are an Exception for that".
  
  
  
