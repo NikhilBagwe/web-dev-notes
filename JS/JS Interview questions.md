@@ -21,3 +21,13 @@
 - Reconcilation : the process by which React updates the UI to reflect changes in the component state
 - We get pre-built features such as State management, Context API in React
 - Component based architecture
+
+## 5. Diff. between class and function component.
+
+## 6. What is JSX? advantage of using it over HTML
+
+## 7. What is interpreated language ?
+
+- An interpreted language is one that does not require compiling into machine language. 
+- It is executed by an interpreter who reads the source code and converts it into a form that is directly executed. 
+- The interpreter executes code line by line which makes JavaScript synchronous in nature.
