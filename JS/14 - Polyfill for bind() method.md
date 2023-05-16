@@ -117,9 +117,38 @@ Function.prototype.mybind = function (...args) {
     params = args.slice(1) 
 
   return function (...args2) {  // the args passed in printName() are received here.
-    obj.apply(args[0], [...params, ...args2]) // here we create a larger array by concatenating 'params' and 'args2' and then sent it to apply()
+    obj.apply(args[0], [...params, ...args2]) // here we create a larger array by concatenating 'params' and 'args2'
   }
 }
+```
+
+## Final Code :
+
+```js
+let name = {
+  firstname: "Nikhil",
+  lastname: "Bagwe",
+}
+
+let printFullName = function (hometown, state, country) {
+  console.log(
+    `${this.firstname} ${this.lastname} from ${hometown}, ${state}, ${country}`
+  )
+}
+
+Function.prototype.mybind = function (...args) {
+  let obj = this,
+    params = args.slice(1)
+
+  return function (...args2) {
+    obj.apply(args[0], [...params, ...args2]) 
+  }
+}
+
+let printName = printFullName.mybind(name, "Mumbai")
+
+printName("Maharashtra", "India") // Even works for multiple params
+
 ```
 
 
@@ -130,8 +159,3 @@ Function.prototype.mybind = function (...args) {
 
 
 
-
-
-
-
-4
