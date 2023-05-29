@@ -31,3 +31,34 @@
 - An interpreted language is one that does not require compiling into machine language. 
 - It is executed by an interpreter who reads the source code and converts it into a form that is directly executed. 
 - The interpreter executes code line by line which makes JavaScript synchronous in nature.
+
+## 8. What is Promise and promise.all ?
+
+- Promise helps us to perform asyncrohnous tasks in JS such an API call......
+- promise.all() helps us to perform 2-3 asynchronous tasks concurrently.
+- Explain how it works and is executed BTS ?
+- Parallel concurrency - Suppose there are 3 promises to be executed concurrently. Then concurrency dosen't mean that all 3 are executed at same time. First promise is sent for exec., then second one and so on. Once all are sent then the execution happens parallely. Sending them parallely at the same time is not possible.
+- Why parallel is not possible ? : Since JS is single-threaded. At a time only 1 process can be executed.
+
+## 9. Why is Event Loop necessary/importance ?
+
+- Gives JS the power to perform asynchronous tasks....
+
+## 10. Suppose there are 3 statments - 1st and 3rd are console.log() and 2nd is an setTimeout() for 3 sec. Explain with event loop how this are executed.
+
+- As JS is synchronous it will execute 1st stmt console.log().
+- Then it sees a setTimeout which is async task, so it pushes it in the macro task queue and then execute the 3rd stmt console.log().
+- After 3 sec Event loop will check if the main thread is empty or not and then push code inside of setTimeout into it.
+
+
+
+
+
+
+
+
+
+
+
+
+#
