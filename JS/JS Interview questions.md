@@ -50,8 +50,26 @@
 - Then it sees a setTimeout which is async task, so it pushes it in the macro task queue and then execute the 3rd stmt console.log().
 - After 3 sec Event loop will check if the main thread is empty or not and then push code inside of setTimeout into it.
 
+## 11. In promise.all there has to be a process that is waiting for all the promises to get resolved and then club them into 1 array and return it. So were exactly this waiting process happens in Event loop ?
 
+## 12. Any point where you think React is slower than HTML and Vanilla JS.
 
+## 13. Higher Order Component in React with example/use case.
+
+- Takes an component as parameter and returns an updated component.
+
+## 14. Why hooks are necessary in React Functional components ?
+
+- Gives it the power of class based components had, such as state (Functional components were stateless).
+- Given life cycle methods to Functional components.
+
+## 15. When to use a Custom hook ?
+
+- Whenever there is a requirement of reusability of logic and in it you also need React capabilities such as State. That time we use hooks.
+
+## 16. In a project made using Functional components, every function is returning some JSX. So where is the mechanism to render/re-render that JSX onto the screen present ?
+
+- 
 
 
 
