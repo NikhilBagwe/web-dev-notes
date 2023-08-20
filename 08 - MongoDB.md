@@ -47,7 +47,17 @@
 
 ## Internal Working of MongoDB :
 
-- When a user submits a form from the frontend
+- When a user submits a Form from the frontend, it is handled by NodeJS/ExpressJS present in the backend who requests the DB to store the data.
+- So first we connect to the MongoDB server from backend.
+- Now, the MongoDB server doesn't directly talks with DB.
+- Instead it uses Storage engine which is present inside the MongoDB server.
+- The job of Storage engine is to Read/Write data to DB. It also converts JSON to BSON.
+
+## JSON vs BSON :
+
+- In MongoDB, we write in JSON format only but BTS data is stored in BSON(Binary JSON) format, a binary representation of JSON.
+- By using BSON we can acheive higher read and write speeds, reduced storage requirements and improved data manipulation capabilities while handling large and complex datasets.
+- While using mongodb we will only work with JSON which is easy to read/write.
 
 
 
