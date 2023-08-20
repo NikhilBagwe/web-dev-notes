@@ -6,4 +6,4 @@
 - It was made by company named as "10gen" which is now renamed as "MongoDB".
 - First version of MongoDB was released in 2009.
 
-## NOTE : The name "Mongo" was derived from the word "Humongous" by removing some letters from start and end.
+### NOTE : The name "Mongo" was derived from the word "Humongous" by removing some letters from start and end.
