@@ -113,9 +113,34 @@
 ## Form Validation :
 
 - We can simply add "required" attribute to the desired Form control.
+- Check validity of a certain field :
+  
+```html
+<div class="form-val">     
+  {{email.valid | json}}
+</div>
+```
+
 - Even if 1 of the Child Form control of a Form is invalid, the whole form becomes invalid.
 - The NgModel directive automatically changes the CSS State classes(reflect state validity of Field value) applied to Form control if the value entered into it is invalid.
 - CSS Class Eg: ng-untouched, ng-dirty, ng-pristine, etc.
+- The instance of NgModel associated to each Form control tracking the validity state of field value produces an "Errors object" which contains the errors that are currently present in the form field.
+- Below code displays error msg when input field is invlaid using Errors object:
+  
+```html
+<form class="login-form data-form" #loginForm="ngForm" >
+
+  <mat-form-field>
+    <input matInput type="email" name="email" placeholder="Email" ngModel #email="ngModel" required>
+    <mat-error *ngIf="email.errors.required">The email is mandatory</mat-error>
+  </mat-form-field>
+.....
+</form>
+
+<div class="form-val">     
+  {{email.errors | json}}
+</div>
+```
 
 
 
