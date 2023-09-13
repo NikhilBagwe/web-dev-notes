@@ -112,6 +112,7 @@
 
 ## Form Validation :
 
+- Validation is done at Browser level when form gets submitted.
 - We can simply add "required" attribute to the desired Form control.
 - Check validity of a certain field :
   
@@ -125,7 +126,7 @@
 - The NgModel directive automatically changes the CSS State classes(reflect state validity of Field value) applied to Form control if the value entered into it is invalid.
 - CSS Class Eg: ng-untouched, ng-dirty, ng-pristine, etc.
 - The instance of NgModel associated to each Form control tracking the validity state of field value produces an "Errors object" which contains the errors that are currently present in the form field.
-- Below code displays error msg when input field is invlaid using Errors object:
+- Below code displays error msg related to "required" validator when input field is invlaid using Errors object:
   
 ```html
 <form class="login-form data-form" #loginForm="ngForm" >
@@ -142,7 +143,13 @@
 </div>
 ```
 
+## Built-in Template Driven Form Validators :
 
+1. required
+2. minlength
+3. maxlength
+4. email
+5. pattern - Regular expression
 
 
 
