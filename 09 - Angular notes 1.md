@@ -56,7 +56,13 @@
 - ngOnDestroy() - Called just before the component is destroyed. Used to cleanup resources.
 
 
+---
+## Angular Forms :
+---
 
+## Template Driven forms :
+
+- Import FormsModule for using Template Driven forms.
 
 
 
