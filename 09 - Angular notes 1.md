@@ -62,11 +62,24 @@
 
 ## Template Driven forms :
 
-- Import FormsModule for using Template Driven forms.
+- In TDF, all data binding and Form validation will be performed in Template i.e .html file only.
+- Import FormsModule in app.module.ts for using Template Driven forms.
+- Important function of Forms is to : Grab data what user has typed i.e "Data binding" and "Validation".
+- In the "form" tag we add a Global Form level coordination Directive whose job is to gather and validate data from all Form controls.
+- We will also add Control-level directives which is responsible only for that Form Control
+- This Directives will coordinate with each other thus allowing us to do automated Data binding and Form Validation.
 
+## NgForm directive :
 
+- It is implicitly/automatically added by Angular to every "form element" once we add FormsModule in our app.
+- It produces an export which points to itself.
+- The Angular directive exportAs defines a name that can be used in the template to assign this directive to a variable.
 
-
+```html
+<form class="login-form data-form" #loginForm="ngForm">
+```
+- So ngForm will grab the value exported by form and assign it to Template variable "loginForm".
+  
 
 
 
