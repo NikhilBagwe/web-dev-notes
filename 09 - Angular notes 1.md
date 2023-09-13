@@ -79,6 +79,36 @@
 <form class="login-form data-form" #loginForm="ngForm">
 ```
 - So ngForm will grab the value exported by form and assign it to Template variable "loginForm".
+
+## NgModel :
+
+- Now to tell ngForm, what are the form controls present in the form we use "ngModel" directive.
+- Thus, now Angular can grab value typed by user and keep a track of it. UI is now binded successfully.
+- Also the form control must have a "name" attribute set.
+- NgModel tracks value of each Form Control using Event handlers.
+
+```html
+<form class="login-form data-form" #loginForm="ngForm" >
+
+  <mat-form-field>
+    <input matInput type="email" name="email" placeholder="Email" ngModel #email="ngModel">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" name="password" placeholder="Password" ngModel #password="ngModel">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click) = "login(loginForm)">
+    Login
+  </button>
+
+</form>
+
+<div class="form-val">
+  {{loginForm.value | json}}
+  {{email.value + ' ' + password.value}}
+</div>
+```
   
 
 
