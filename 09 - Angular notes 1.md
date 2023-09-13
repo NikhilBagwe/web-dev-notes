@@ -109,6 +109,31 @@
   {{email.value + ' ' + password.value}}
 </div>
 ```
+
+## Form Validation :
+
+- We can simply add "required" attribute to the desired Form control.
+- Even if 1 of the Child Form control of a Form is invalid, the whole form becomes invalid.
+- The NgModel directive automatically changes the CSS State classes(reflect state validity of Field value) applied to Form control if the value entered into it is invalid.
+- CSS Class Eg: ng-untouched, ng-dirty, ng-pristine, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 
