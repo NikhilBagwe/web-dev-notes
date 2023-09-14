@@ -237,7 +237,78 @@ export class LoginReactiveComponent implements OnInit {
 
 }
 ```
-3. Bind the Class code to Template.
+
+3. Bind the Class code to Template using RF Directive.
+
+```html
+<form class="login-form data-form" [formGroup]="form">
+  <mat-form-field>
+    <input 
+      matInput 
+      type="email" 
+      name="email"
+      placeholder="Email"
+      formControlName="email"
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="Password" formControlName="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">
+    Login
+  </button>
+</form>
+
+<div class="form-val">
+  {{form.value | json}}
+</div>
+<div class="form-val">
+  {{form.valid}}
+</div>
+```
+
+4. Alternative way of creating RF :
+
+### Class file :
+
+```js
+export class LoginReactiveComponent implements OnInit { 
+  email = new FormControl('', {validators: [Validators.required, Validators.email]})
+  password = new FormControl('', {validators: [Validators.required, Validators.minLength(8)]})
+
+  form = new FormGroup({
+    email: this.email,
+    password: this.password
+  })
+....
+}
+```
+
+### Template file :
+
+```html
+<form class="login-form data-form" [formGroup]="form">
+  <mat-form-field>
+    <input 
+      matInput 
+      type="email" 
+      name="email"
+      placeholder="Email"
+      [formControl]="email"
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="Password" [formControl]="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">
+    Login
+  </button>
+</form>
+```
 
 
 
