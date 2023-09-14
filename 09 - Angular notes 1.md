@@ -178,9 +178,31 @@
 ```
 ### NOTE : Errors will not always be present. So use '?' operator.
 
+## ngModelChange :
 
+- Whenever a change occurs in the form field, the ngModelChange will call the assigned function.
 
+```html
+<form class="login-form data-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
 
+  <mat-form-field>
+    <input matInput type="email" name="email" placeholder="Email"
+    ngModel
+    #email="ngModel"
+    required
+    (ngModelChange)="onEmailChange($event)"
+    >
+  ....
+</form>
+```
+
+```js
+// app.comp.ts file
+
+onEmailChange(change){
+  console.log(change);  
+}
+```
 
 
 
