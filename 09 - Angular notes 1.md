@@ -204,6 +204,16 @@ onEmailChange(change){
 }
 ```
 
+--- 
+
+## Reactive Forms :
+
+- In TDF, everything happens at Template-level.
+- We need to apply a lot of directives even for a small Form to work in TDF. Thus, it makes things more complex.
+- Template must contain only View related code but here we also have component logic at template level which should be present at Class level.
+- Hence, we use Reactive Forms at large scale enterprise level forms which are complex.
+- In RF, the Template contains code for UI and Business validation rules and Logic is written in Class.
+
 
 
 
