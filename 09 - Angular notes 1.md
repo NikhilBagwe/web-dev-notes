@@ -151,7 +151,32 @@
 4. email
 5. pattern - Regular expression
 
+## ngSubmit :
 
+- Normally when we add type="submit" to Submit button of an HTML form, it grabs all the values from Form Controls and sends it to Backend in a POST request.
+- But we don't want this in an SPA. We want the form to send an HTTP AJAX request.
+- So we use ngSubmit to prevent Default behaviour of forms i.e submitting the form as HTTP POST request.
+- We can also used the [disabled] attribute to disable the Submit button until all fields of form have valid values.
+
+```html
+<form class="login-form data-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+  <mat-form-field>
+    <input matInput type="email" name="email" placeholder="Email" ngModel #email="ngModel" required>
+    <mat-error *ngIf="email.errors?.required">The email is mandatory</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" name="password" placeholder="Password" ngModel #password="ngModel" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
+    Login
+  </button>
+
+</form>
+```
+### NOTE : Errors will not always be present. So use '?' operator.
 
 
 
