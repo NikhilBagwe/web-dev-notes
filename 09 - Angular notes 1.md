@@ -214,8 +214,30 @@ onEmailChange(change){
 - Hence, we use Reactive Forms at large scale enterprise level forms which are complex.
 - In RF, the Template contains code for UI and Business validation rules and Logic is written in Class.
 
+## Create an RF :
 
+1. Add ReactiveFormModule to app.module.ts
+2. Define the Model for RF in class file and also add validations.
 
+```js
+export class LoginReactiveComponent implements OnInit {
+
+  // The form prop. takes a Configuration object which contains the name of multiple form controls.
+  // We also add the validations for the form control by passing validations config obj
+  form = new FormGroup({
+    email: new FormControl('', {validators: [Validators.required, Validators.email]}),
+    password: new FormControl('', {validators: [Validators.required, Validators.minLength(8)]})
+  })
+
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
+
+}
+```
+3. Bind the Class code to Template.
 
 
 
