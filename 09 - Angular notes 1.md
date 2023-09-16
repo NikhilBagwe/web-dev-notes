@@ -310,7 +310,51 @@ export class LoginReactiveComponent implements OnInit {
 </form>
 ```
 
+## Form Builder API :
 
+- Concise way of defining forms.
+- It is not necessary to always define a group of controls, we can also define a single form control.
+
+### Template :
+
+```html
+<form class="login-form data-form" [formGroup]="form">
+  <mat-form-field>
+    <input 
+      matInput 
+      type="email" 
+      name="email"
+      placeholder="Email"
+      formControlName="email"
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="password" placeholder="Password" formControlName="password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">
+    Login
+  </button>
+</form>
+```
+
+### Class :
+
+```js
+export class LoginReactiveComponent implements OnInit {
+  form = this.fb.group({
+    // control_name: [initial value, validators, synchronous validators]
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]]
+  });
+
+  constructor(private fb: FormBuilder) {   
+  }
+  ngOnInit() {
+  }
+}
+```
 
 
 
