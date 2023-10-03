@@ -65,10 +65,41 @@ export class AppComponent {
   };
 }
 ```
+### 2. String Concatenation :
 
+```html
+<div class="content" role="main">
+  <h1>String Concatenation</h1>
+  <h2>{{"My name is " + emp.name}}</h2>
+</div>
+```
 
+### 3. Calculations :
 
+```html
+<div class="content" role="main">
+  <h1>Calculations</h1>
+  <h2>{{ 5 + 5}}</h2>
+</div>
+```
 
+### 4. Using Built-in JS methods :
+
+```html
+<div class="content" role="main">
+  <h2>{{ name.length}}</h2>
+  <h2>{{ name.toUpperCase()}}</h2>
+  <h2>{{ name.includes('k')}}</h2>
+</div>
+```
+
+## Where we shouldn't use Interpolation ?
+
+- While defining dynamic HTML attributes values.
+```html
+ <h1 class="{{heading}}">Calculations</h1>
+```
+- There is a better way to do that in Angular.
 
 
 
