@@ -96,6 +96,7 @@ export class AppComponent {
 ## Where we shouldn't use Interpolation ?
 
 - While defining dynamic HTML attributes values.
+- For example :
 ```html
  <h1 class="{{heading}}">Calculations</h1>
 ```
