@@ -334,6 +334,47 @@ export class PropBindingComponent {
 }
 ```
 
+---
+---
+
+# Directives :
+
+- Fundamental building blocks of Angular.
+- Using them we can add additional behaviour and functionality to Components, elements, templates, etc.
+- We can manipulate DOM, add styles, handle events.
+- The Component is also itself an Directive. When we mention the component name tag in app.html, we instruct Angular to insert the respective component's code there thus manipulating DOM.
+
+### Types of Directive :
+
+1. Component
+2. Structural - Manipulate DOM - ngIf, ngFor, ngSwitch
+3. Attribute - Manipulate appearance and behaviour of an existing element - ngClass, ngSwitch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
