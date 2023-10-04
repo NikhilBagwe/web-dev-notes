@@ -268,16 +268,71 @@ export class PropBindingComponent {
 
 - Similarly we can assign the above object to a variable in .ts file and then assign that variable in ngStyle. 
 
+---
+---
 
+# Two-way Data binding : [(ngModel)]
 
+-  Enables data to flow from the component to the view and the other way round.
+-  We need to import "FormsModule" to use ngModel.
+- Example:
 
+```html
+<input type="text" placeholder="Enter email..." [(ngModel)]='email'>
+<br>
+{{email}}
+```
 
+```js
+export class PropBindingComponent {
+  email: string = 'hi@mail.com';
+}
+```
 
+- So when we type something in the input box, the same is assigned to "email" present in ".ts" file and the same updated value is displayed using Interpolation on UI.
 
+### Checkbox example :
 
+- Gender will be updated in UI as we select corresponding Checkbox.
+  
+```html
+<br>
+<input type="radio" [(ngModel)]="gender" value='Male' >
+<input type="radio" [(ngModel)]="gender" value='Female' >
+<br>
+Gender : {{gender}}
+```
 
+```js
+export class PropBindingComponent {
+  gender: string = 'Male';
+}
+```
 
+---
+---
 
+# Template Reference variable :
+
+- Provides a reference to any DOM element using which we can access the properties & attributes of the element.
+
+```html
+<input type="text" #inpVal><br>
+<button (click)="getValue(inpVal)">Submit</button><br>
+Value: {{val3}}
+```
+
+```js
+export class PropBindingComponent {
+  val3: any;
+
+  getValue(val: any) {
+    console.log(val);
+    console.log(val.value);
+    this.val3 = val.value;
+  }
+}
+```
 
 
 
