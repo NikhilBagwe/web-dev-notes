@@ -102,10 +102,32 @@ export class AppComponent {
 ```
 - There is a better way to do that in Angular.
 
+---
+---
 
+## Property Binding :
 
+- Used to bind Dynamic data.
+- Interpolation is used to DISPLAY dynamic data while Prop. Binding is used to bind a DYNAMIC value in HTML attribute.
 
+### Example :
 
+```html
+<img [src]="myImage" alt="">
+<br>
+<input type="text" [value]='name'>
+```
+
+```js
+export class PropBindingComponent {
+  name: string = 'john';
+  myImage: string =
+    'data:image/jpeg;base64,/9j/4AA.. Image Address';
+}
+```
+
+- The above example can also work using Interpolation but it is not a good practice to do.
+- There are certain scenarios where Interpolation fails to work. Eg: [disabled], [hidden], [checked], etc.
 
 
 
