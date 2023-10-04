@@ -209,14 +209,49 @@ export class PropBindingComponent {
 }
 ```
 
+---
+---
 
+# Class Binding :
 
+```html
+<h1 [class.myClass]='true'>fhsdfhsd</h1>
+```
 
+- In dev tools we can see that the class is attached to the h1 element
 
+```html
+<h1 _ngcontent-ng-c1295339505="" class="myClass">fhsdfhsd</h1>
+```
 
+- Instead of passing just "true" we can also pass some object's property like "emp.isActive".
 
+# Style Binding :
 
+- Add CSS directly in the element.
 
+```html
+<h1 [style.padding]="'30px'">fhsdfhsd</h1>
+```
+- Similarly we can also use ternary operator logic and object properties.
+
+### NOTE : Using above methods we can only bind one class or style at a time. For that we use ngClass & ngStyle
+
+# ngClass :
+
+- Bind multiple classes to element.
+
+```html
+<h1 [ngClass]="'class1 class2 class3'">Hello</h1>
+```
+- Another way: Based on true or false the class will be applied to element.
+
+```html
+<h1 [ngClass]="{
+    'class1': true,
+    'class2': true
+}">Hello</h1>
+```
 
 
 
