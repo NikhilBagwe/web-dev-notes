@@ -20,7 +20,7 @@
 ---
 ---
 
-## Data Binding :
+# Data Binding :
 
 - Data binding is basically the communication between Component (.ts) and View (.html).
 
@@ -39,7 +39,7 @@
 ---
 ---
 
-## Interpolation :
+# Interpolation :
 
 ### 1. String Interpolation :
 
@@ -105,7 +105,7 @@ export class AppComponent {
 ---
 ---
 
-## Property Binding :
+# Property Binding :
 
 - Used to bind Dynamic data.
 - Interpolation is used to DISPLAY dynamic data while Prop. Binding is used to bind a DYNAMIC value in HTML attribute.
@@ -129,7 +129,23 @@ export class PropBindingComponent {
 - The above example can also work using Interpolation but it is not a good practice to do.
 - There are certain scenarios where Interpolation fails to work. Eg: [disabled], [hidden], [checked], etc.
 
+## Attribute Binding :
 
+- Used where the attribute is not a Standard HTML attribute.
+- Eg: aria-label, data-name
+- SYNTAX :
+
+```html
+<h1 [attr.aria-label] = "name">hi</h1>
+```
+
+## Another Syntax :
+
+- Used very less times.
+
+```html
+<img bind-src="myImage" alt="">
+```
 
 
 
