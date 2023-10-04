@@ -147,6 +147,94 @@ export class PropBindingComponent {
 <img bind-src="myImage" alt="">
 ```
 
+---
+---
+
+# Event Binding :
+
+- Used to send Data from "View => Component"
+
+```html
+<h1>{{count}}</h1>
+<button (click) = "clickMethod()">+ Count +</button>
+```
+
+```js
+export class PropBindingComponent {
+  count: number = 0;
+
+  clickMethod() {
+    this.count++;
+  }
+}
+```
+
+### Pass data to events :
+
+```html
+<h1>{{value}}</h1>
+<button (click) = "changeValue('Bagwe')">Change Value</button>
+```
+
+```js
+export class PropBindingComponent {
+  value: any = 'Nikhil';
+
+  changeValue(val: string) {
+    this.value = val;
+  }
+}
+```
+
+## $event :
+
+- A reserved variable in Angular.
+- We get all information about an event using it.
+- We can use it with (scroll), (change) , etc.
+
+```html
+<input type="text" (input)="inputChange($event)" placeholder="Enter your name..">
+<h1>Value: {{val2}}</h1>
+```
+
+```js
+export class PropBindingComponent {
+  val2: string = '';
+
+  inputChange(event: any) {
+    console.log(event);
+    console.log(event.target.value);
+    this.val2 = event.target.value;
+  }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
