@@ -244,12 +244,14 @@ export class PropBindingComponent {
 ```html
 <h1 [ngClass]="'class1 class2 class3'">Hello</h1>
 ```
+
 - Another way: Based on true or false the class will be applied to element.
+- Instead of boolean value we can also pass obj. prop.
 
 ```html
 <h1 [ngClass]="{
     'class1': true,
-    'class2': true
+    'class2': emp.isActive
 }">Hello</h1>
 ```
 
