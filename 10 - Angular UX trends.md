@@ -255,7 +255,18 @@ export class PropBindingComponent {
 }">Hello</h1>
 ```
 
+# ngStyle :
 
+```html
+<h1 [ngStyle]="{
+    'background': 'yellow',
+    'padding': '40px',
+    'width': '100px',
+    'opacity': 0.5
+}">Hello</h1>
+```
+
+- Similarly we can assign the above object to a variable in .ts file and then assign that variable in ngStyle. 
 
 
 
