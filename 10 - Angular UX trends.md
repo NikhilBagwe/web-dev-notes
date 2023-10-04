@@ -190,7 +190,7 @@ export class PropBindingComponent {
 
 - A reserved variable in Angular.
 - We get all information about an event using it.
-- We can use it with (scroll), (change) , etc.
+- We can use it with (scroll), (change), etc. Events.
 
 ```html
 <input type="text" (input)="inputChange($event)" placeholder="Enter your name..">
