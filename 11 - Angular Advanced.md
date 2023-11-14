@@ -2,7 +2,15 @@
 
 ### Why not use a normal HTML form ?
 
-- 
+- When a normal HTML form is submitted, it reloads the page by making an HTTP request to server.
+- Thus, it kills the whole purpose of creating an SPA as by reloading the page it will restart the Angular SPA.
+- Hence, we need Angular's help to stop this default behaviour which can be acheived using Template driven or Reactive forms.
+
+## Reactive Forms :
+
+- In RF, we create the Form group and Form control in the component class and then we somehow synchronize it with the HTML form we have defined in our View template.
+- Creating dynamic controls is easier.
+- Must import ReactiveFormsModule from @angular/forms in App module file.
 
 ---
 ---
