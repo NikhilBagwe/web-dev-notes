@@ -76,6 +76,42 @@ export class AppComponent implements OnInit{
 </form>
 ```
 
+## ngSubmit :
+
+- When a form is submitted, Angular raises an event called ngSubmit.
+- We can listen to that event.
+
+```html
+<form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
+  .
+  .
+  <input type="submit" value="Submit" class="submit-btn">
+</form>
+```
+
+## Adding Validation :
+
+- By default if we don't add any validation, the "valid" property of FormGroup and FormControl will be true.
+- In TDF, we used to use HTML attributes to add validation to HTML form such as "required,email,etc." in the View page itself.
+- But in RF, we will define the validation in FormControl itself.
+
+```js
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null, Validators.required),
+      lastname: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
+      ....
+    })
+  }
+} 
+```
+
 ---
 ---
 
