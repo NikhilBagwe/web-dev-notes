@@ -12,6 +12,70 @@
 - Creating dynamic controls is easier.
 - Must import ReactiveFormsModule from @angular/forms in App module file.
 
+### Why we use FormGroup while creating a Reactive form as in Template-driven form we use an onject on "ngForm" ?
+
+- ngForm is also a type of FormGroup.
+- When we import FormsModule from angular/forms, then whenever it finds a form in angular app it will automatically make it as Template-driven form. Thus, we don't need to explicitly use ngForm on it.
+- Since, ngForm is storing a collection of FormControls thus it is a type of FormGroup.
+
+## Creating a Reactive form :
+
+```js
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null),
+      lastname: new FormControl(null),
+      email: new FormControl(null),
+      username: new FormControl(null),
+      dob: new FormControl(null),
+      gender: new FormControl(null),
+      street: new FormControl(null),
+      country: new FormControl(null),
+      city: new FormControl(null),
+      region: new FormControl(null),
+      postal: new FormControl(null),
+    })
+  }
+} 
+
+```
+
+## Connecting RF to HTML form in View template :
+
+- Bind the FormGroup and FormControl as below
+  
+```html
+<form class="form" [formGroup]="reactiveForm">
+    <div class="column">
+      <div class="input-box">
+        <input type="text" placeholder="First Name" formControlName="firstname" />
+      </div>
+
+      <div class="input-box">
+        <input type="text" placeholder="Last Name" formControlName="lastname"/>
+      </div>
+    </div>
+
+    .....
+    .....
+</form>
+```
+
 ---
 ---
 
