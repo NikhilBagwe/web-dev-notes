@@ -157,6 +157,23 @@ input.ng-invalid.ng-touched{
       </div>
 ```
 
+## Disable SUBMIT button until valid data is entered into the form :
+
+- We will use "valid or invalid" property of the FormGroup.
+- Using Property binding :
+
+```html
+<form>
+    ....
+    <input type="submit" value="Submit" class="submit-btn" [disabled]="!reactiveForm.valid">
+    ....
+</form>
+```
+
+## Grouping of Form Controls :
+
+- We can find all the form controls present in the FormGroup under "controls" property.
+- There are 3 ways to 
 ---
 ---
 
