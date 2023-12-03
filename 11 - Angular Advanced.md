@@ -173,7 +173,69 @@ input.ng-invalid.ng-touched{
 ## Grouping of Form Controls :
 
 - We can find all the form controls present in the FormGroup under "controls" property.
-- There are 3 ways to 
+- There are 3 ways:
+
+### 1. Create a FormGroup inside a FormGroup :
+
+- First step is to create a FormGroup inside a FormGroup and put formControls inside it.
+
+```js
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null, Validators.required),
+      lastname: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      username: new FormControl(null),
+      dob: new FormControl(null),
+      gender: new FormControl('male'),
+      
+      address: new FormGroup({
+        // Below FormControls are now part of "address" FormGroup
+        street: new FormControl(null),
+        country: new FormControl('India'),
+        city: new FormControl(null),
+        region: new FormControl(null),
+        postal: new FormControl(null),
+      }),
+
+      // street: new FormControl(null),
+      // country: new FormControl('India'),
+      // city: new FormControl(null),
+      // region: new FormControl(null),
+      // postal: new FormControl(null),
+    })
+  }
+```
+
+- In the HTML page wrap the FormControls present inside the new "address" formGroup inside a "div" container.
+- Also assign the FormGroupName to it accordingly.
+
+```html
+  <div class="input-box address" formGroupName="address">
+      <label>Address</label>
+      <input type="text" placeholder="Street address" formControlName="street"/>
+      .....
+    </div>
+```
+
+- Adding validation :
+```html
+<div class="input-box address" formGroupName="address">
+      <label>Address</label>
+      <input type="text" placeholder="Street address" formControlName="street"/>
+      <small *ngIf="reactiveForm.get('address.street').invalid &&reactiveForm.get('address.street').touched">
+        *Street address is required.
+      </small>
+      ....
+</div>
+```
+
 ---
 ---
 
