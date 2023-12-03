@@ -173,10 +173,6 @@ input.ng-invalid.ng-touched{
 ## Grouping of Form Controls :
 
 - We can find all the form controls present in the FormGroup under "controls" property.
-- There are 3 ways:
-
-### 1. Create a FormGroup inside a FormGroup :
-
 - First step is to create a FormGroup inside a FormGroup and put formControls inside it.
 
 ```js
@@ -213,7 +209,7 @@ export class AppComponent implements OnInit{
   }
 ```
 
-- In the HTML page wrap the FormControls present inside the new "address" formGroup inside a "div" container.
+- Then in the HTML page wrap the FormControls present inside the new "address" formGroup inside a "div" container.
 - Also assign the FormGroupName to it accordingly.
 
 ```html
