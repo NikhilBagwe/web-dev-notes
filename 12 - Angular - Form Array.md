@@ -1,0 +1,69 @@
+## FormArray :
+
+- FormArray is a way to manage a collection of FormControls in Angular.
+- The Form Control can be a FormGroup, FormControl or another FormArray.
+
+### Difference between FormArray and FormGroup :
+
+- In Angular, we can group FormControls in 2 ways i.e. using FormArray and FormGroup.
+- The difference between them is the way they create collections.
+- FormGroup - Stores the form controls in the form of key-value pair in an object.
+- FormArray - Stores the form control as an element of an array.
+
+## Creating a FormArray :
+
+- Declare FormArray in class file.
+  
+```js
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null, Validators.required),
+      lastname: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      username: new FormControl(null),
+      dob: new FormControl(null),
+      gender: new FormControl('male'),
+      address: new FormGroup({
+        street: new FormControl(null, Validators.required),
+        country: new FormControl('India', Validators.required),
+        city: new FormControl(null),
+        region: new FormControl(null),
+        postal: new FormControl(null, Validators.required),
+      }),
+
+      skills: new FormArray([     // FormArray
+        new FormControl(null),
+        new FormControl(null),
+        new FormControl(null)
+      ])
+    })
+  }
+}
+```
+- In View template, we create a container inside which we create the form elements.
+- In our code, we can simply use a FOR loop and loop over the skills FormArray.
+- The FormControls which will be genrated by the FOR loop are not connected to the FormArray elements present in class file.
+- So we need to use formContolName directive to bind them.
+- Also we need to provide a dynamic name for each generated FormControl. So we will use the "index".
+
+```html
+<div class="input-box" formArrayName="skills">
+  <input type="text" 
+    placeholder="Add Skill..."
+    *ngFor="let control of reactiveForm.get('skills')['controls']; let i=index"
+    [formControlName]="i"
+  >
+</div>
+```
+
+
+
+
+
+
+
