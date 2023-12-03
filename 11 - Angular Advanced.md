@@ -112,6 +112,51 @@ export class AppComponent implements OnInit{
 } 
 ```
 
+## Passing Multiple validators :
+
+- We have to pass an array of Validators.
+```js
+ngOnInit() {
+    this.reactiveForm = new FormGroup({
+      ....
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      ....
+    })
+  }
+```
+
+## Adding RED border for invalid input fields :
+
+- In "app.component.css" file add below code:
+```css
+input.ng-invalid{
+  border: red 2px solid;
+}
+```
+- When Angular automatically adds the "ng-invalid" class to an input form control when it becomes invalid based on the validations provided in class file, the border changes to RED.
+- On page load we must not show red border around the form controls. Only when user TOUCHES the Form control and dosen't enter a valid value, then only show RED border. Use "ng-touched"
+- Make below changes in code.
+```css
+input.ng-invalid.ng-touched{
+  border: red 2px solid;
+}
+```
+
+## Showing Validation Error messages :
+
+- To display validation message for a particular FormControl we have to access the "invalid" and "touched" property of that FormControl through FormGroup using "get('name of formcontrol')" method.
+
+```html
+<form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
+    <div class="column">
+      <div class="input-box">
+        <input type="text" placeholder="First Name" formControlName="firstname" />
+        <small *ngIf="reactiveForm.get('firstname').invalid && reactiveForm.get('firstname').touched">
+          *First name is a required field.
+        </small>
+      </div>
+```
+
 ---
 ---
 
