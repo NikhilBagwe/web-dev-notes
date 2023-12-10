@@ -64,6 +64,9 @@ export class AppComponent implements OnInit{
 ## Adding and Deleting Form Controls dynamically using RF: 
 
 - Here we will provide the user with an "Add" button by clicking on which a new Form control will be added dynamically and similarly a "Delete" button to delete it.
+- In the ngFor loop, the "controls" property stores all the form controls of the "skills" form array as its element.
+- variable "i" stores index of that curent Form control.
+- Since we want to assign the value stored in "i" to "formControlName", we use Property binding.
 
 ```html
 <div class="input-box" formArrayName="skills">
@@ -118,7 +121,9 @@ export class AppComponent implements OnInit{
 } 
 ```
 
+## Rendering Form Group Dynamically:
 
+- It is similar to expereince section in a job portal where we can add multiple expereinces. 
 
 
 
