@@ -71,10 +71,10 @@ export class AppComponent implements OnInit{
 ```html
 <div class="input-box" formArrayName="skills">
   <h4>Add Skills</h4>
-  <div class="column" *ngFor="let control of reactiveForm.get('skills')['controls']; let i=index"
-  [formControlName]="i">
+  <div class="column" *ngFor="let control of reactiveForm.get('skills')['controls']; let i=index">
     <input type="text" 
       placeholder="Add Skill..."
+      [formControlName]="i"
     >
     <button type="button" class="btn-add-delete" (click)="DeleteSkill(i)" >
       Delete
@@ -107,6 +107,11 @@ export class AppComponent implements OnInit{
     })
   }
 
+  OnFormSubmitted(){
+    //alert(this.reactiveForm.valid)
+    console.log(this.reactiveForm.value)
+  }
+
   // Adds a new Form Control for Skills formArray
   AddSkills(){
     // push method is only avalilable on FormArray. Thus, we explicitly perform casting.
@@ -125,9 +130,83 @@ export class AppComponent implements OnInit{
 
 - It is similar to expereince section in a job portal where we can add multiple expereinces. 
 
+```html
+<div class="input-box" formArrayName="experience">
+  <!-- Below FormGroup is present inside the "experience" FormArray and will be rendered dynamically -->
+  <div class="experience" *ngFor="let exp of reactiveForm.get('experience')['controls']; let i=index" [formGroupName]="i">
+      <label>Experience {{i+1}}</label>
+      <input type="text" placeholder="Company Name" formControlName="company" />
+      <div class="column">
+        <div class="select-box">
+          <select formControlName="position">
+            <option hidden>Position</option>
+            <option>Junior Developer</option>
+            <option>Software Developer</option>
+            <option>Senior Developer</option>
+            <option>Team Lead</option>
+          </select>
+        </div>
+        <input type="number" placeholder="Experience" formControlName="totalExp" />
+      </div>
 
+      <div class="column">
+        <input type="date" placeholder="Start Date" formControlName="start" />
+        <input type="date" placeholder="End Date" formControlName="end" />
+      </div>
 
+      <button type="button" class="btn-add-delete" (click)="DeleteExperience(i)">Delete Experience</button>
+    </div>
+</div>
 
+<button type="button" class="btn-add-delete" (click)="AddExperience()">
+  Add Experience
+</button>
+```
+
+```js
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      // ..........
+      skills: new FormArray([
+        new FormControl(null, Validators.required)
+        // new FormControl(null, Validators.required),
+        // new FormControl(null, Validators.required),
+        // new FormControl(null, Validators.required)
+      ]),
+
+      // Below FormArray will contain FormGroups
+      experience: new FormArray([
+        // must be displayed empty until user clicks "add experience" button
+      ])
+    })
+  }
+
+  // ............
+
+  AddExperience(){
+    const formGroup = new FormGroup({
+      company: new FormControl(null),
+      position: new FormControl(null),
+      totalExp: new FormControl(null),
+      start: new FormControl(null),
+      end: new FormControl(null)
+    });
+
+    (<FormArray>this.reactiveForm.get('experience')).push(formGroup)
+  }
+
+  DeleteExperience(index: number){
+    const frmArray = <FormArray>this.reactiveForm.get('experience');
+    frmArray.removeAt(index)
+  }
+} 
+```
 
 
 
