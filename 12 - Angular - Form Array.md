@@ -61,6 +61,81 @@ export class AppComponent implements OnInit{
 </div>
 ```
 
+## Adding and Deleting Form Controls dynamically using RF: 
+
+- Here we will provide the user with an "Add" button by clicking on which a new Form control will be added dynamically and similarly a "Delete" button to delete it.
+
+```html
+<div class="input-box" formArrayName="skills">
+  <h4>Add Skills</h4>
+  <div class="column" *ngFor="let control of reactiveForm.get('skills')['controls']; let i=index"
+  [formControlName]="i">
+    <input type="text" 
+      placeholder="Add Skill..."
+    >
+    <button type="button" class="btn-add-delete" (click)="DeleteSkill(i)" >
+      Delete
+    </button>
+  </div>
+</div>
+
+<button type="button" class="btn-add-delete" (click)="AddSkills()">
+  Add Skills
+</button>
+```
+
+```js
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      .....
+
+      skills: new FormArray([
+        new FormControl(null, Validators.required),
+        // new FormControl(null, Validators.required),
+        // new FormControl(null, Validators.required),
+        // new FormControl(null, Validators.required)
+      ])
+    })
+  }
+
+  // Adds a new Form Control for Skills formArray
+  AddSkills(){
+    // push method is only avalilable on FormArray. Thus, we explicitly perform casting.
+    (<FormArray>this.reactiveForm.get('skills')).push(new FormControl(null, Validators.required))
+  }
+
+  // Delete the skill form Control based on provided index
+  DeleteSkill(index: number){
+    const controls = <FormArray>this.reactiveForm.get('skills')
+    controls.removeAt(index)
+  }
+} 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
