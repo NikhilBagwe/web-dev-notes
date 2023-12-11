@@ -208,8 +208,35 @@ export class AppComponent implements OnInit{
 } 
 ```
 
+## User-defined Custom Validator :
+
+- Custom validator is used to validate input data in a form control.
+- Error code : Remove the logic to enable submit form button only when all required fields are filled with correct data. In console, we can see the "error" property under the "control" whose validation was set to "required".
+
+  ![image](https://github.com/NikhilBagwe/web-dev-notes/assets/67143015/00acf5a1-a69f-426d-a55c-0d6f6a02ab74)
+
+- Basically, if the "errors" property is null, there is no error on that form control.
+
+### Validator to check if a "space" has been entered by the user in the text input form control:
+
+- Only can be used on a Form Control. Not on a FormGroup, etc.
+- Create below file.
+
+![image](https://github.com/NikhilBagwe/web-dev-notes/assets/67143015/f6c49bac-5800-49d1-beee-2c7813fbf21c)
 
 
+```js
+import { FormControl } from "@angular/forms";
+
+export const noSpaceAllowed = (control: FormControl) => {
+    if(control.value != null && control.value.indexOf(' ') != -1){
+        // whatever value we return from here will be assigned to "errors" property of form control
+        return {noSpaceAllowed: true}
+    }
+
+    return null
+}
+```
 
 
 
