@@ -217,6 +217,8 @@ export class AppComponent implements OnInit{
 
 - Basically, if the "errors" property is null, there is no error on that form control.
 
+---
+
 ### Validator to check if a "space" has been entered by the user in the text input form control:
 
 - Only can be used on a Form Control. Not on a FormGroup, etc.
