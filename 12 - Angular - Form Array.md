@@ -304,9 +304,46 @@ export class AppComponent implements OnInit{
 - Eg: When a user is creating a username, it must be unique. Hence, we need to use async validator here to check if that username already exists in the DB or not.
 - Returns either a Promise or Observable.
 - Angular dosen't provide any built-in async validator. It only provides sync validators such as required, min, max, etc.
-- 
+- "ng-pending" class is added when the async validation is being performed.
 
+```js
+// file_name.validator.ts
 
+export class CustomValidators{
+    // .....
+
+    // This Async validator can be used on FormGroup, Form Control or FormArray
+    static checkUserName(control: AbstractControl): Promise<any>{
+        return userNameAllowed(control.value)
+    }
+}
+
+// Mock API to test async validator
+function userNameAllowed(username: string){
+    const takenUserNames = ['johnsmith', 'manojjha', 'nikhil']
+
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if(takenUserNames.includes(username)){
+                resolve({checkUsername: true})
+            }
+            else{
+                resolve(null)
+            }
+        }, 5000);
+    })
+}
+```
+
+![image](https://github.com/NikhilBagwe/web-dev-notes/assets/67143015/2103f0cd-4b7e-457c-b168-5380b860b90c)
+
+- Add a YELLOW border to show validation is been performed.
+
+```css
+input.ng-pending{
+  border: yellow 2px solid;
+}
+```
 
 
 
