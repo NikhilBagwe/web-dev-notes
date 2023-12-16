@@ -458,8 +458,77 @@ export class AppComponent implements OnInit{
 ## setValue() method:
 
 - Used to update the value of a FC, FG or FA.
-- We must pass an object in setValue() to update the value and that object must match the structure of FC, FG or FA which we are trying to update.
-- Eg: On clicking the "Create username" button, an username will be auto-generated using the firstname and lastname.
+- We must pass an object in setValue() to update the value and that object must MATCH the structure of FC, FG or FA which we are trying to update.
+- Eg: In below code on clicking the "Create username" button, an username will be auto-generated using the firstname and lastname. The button will be disabled until the user enters the required data to generate username.
+
+```html
+<div class="column">
+    <div class="input-box">
+      <input type="text" placeholder="username" formControlName="username"/>
+      <button class="btn-gen-username" type="button" (click)="GenerateUserName()"
+      [disabled]="!(reactiveForm.get('firstname').value 
+                  && reactiveForm.get('lastname').value 
+                  && reactiveForm.get('dob').value)"
+      >
+        Create a Username
+      </button>
+    </div>
+    <div class="input-box">
+      <input type="date" placeholder="Date of Birth" formControlName="dob" />
+    </div>
+</div>
+```
+
+```js
+GenerateUserName(){
+    let username = '';
+    const fName: string= this.reactiveForm.get('firstname').value;
+    const lName: string= this.reactiveForm.get('lastname').value;
+    const dob: string= this.reactiveForm.get('dob').value;
+
+    if(fName.length >= 3){
+      username += fName.slice(0, 3);
+    }
+    else {
+      username += fName;
+    }
+
+    if(lName.length >= 3){
+      username += lName.slice(0, 3);
+    }
+    else {
+      username += lName;
+    }
+
+    let datetime = new Date(dob);
+    username += datetime.getFullYear();
+    username = username.toLowerCase();
+
+    console.log(username)
+
+    // structure similar to FormGroup ---------------------------
+    this.reactiveForm.setValue({
+      firstname: this.reactiveForm.get('firstname').value,
+      lastname: this.reactiveForm.get('lastname').value,
+      email: this.reactiveForm.get('email').value,
+
+      // setting username value ---------------------------------
+      username: username,
+
+      dob: this.reactiveForm.get('dob').value,
+      gender: this.reactiveForm.get('gender').value,
+      address: {
+        street: this.reactiveForm.get('address.street').value,
+        country: this.reactiveForm.get('address.country').value,
+        city: this.reactiveForm.get('address.city').value,
+        region: this.reactiveForm.get('address.region').value,
+        postal: this.reactiveForm.get('address.postal').value,
+      },
+      skills: this.reactiveForm.get('skills').value,
+      experience: this.reactiveForm.get('experience').value
+    })
+  }
+```
 
 
 
