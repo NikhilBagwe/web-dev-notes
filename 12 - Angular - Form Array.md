@@ -375,8 +375,81 @@ export class AppComponent implements OnInit{
 } 
 ```
 
+### Listening to FormGroup:
 
+```js
+export class AppComponent implements OnInit{
+  reactiveForm: FormGroup;
 
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null, [Validators.required, CustomValidators.noSpaceAllowed]),
+      // .....
+    })
+
+    // CODE -------------
+    this.reactiveForm.valueChanges.subscribe((data) => {
+      console.log(data)
+    })
+  }
+
+  // ...
+} 
+```
+
+---
+---
+
+## statusChange() event:
+
+- An event which is raised by Angular whenever Angular calculates the validation status of a FormControl,etc. changes.
+- Emits a string value which corresponds to "valid", invalid or pending.
+- Returns an observable.
+- Used to check valid/invalid status of form.
+
+```js
+export class AppComponent implements OnInit{
+  reactiveForm: FormGroup;
+  formStatus: string = ''
+
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null, [Validators.required, CustomValidators.noSpaceAllowed]),
+      // .....
+    })
+
+    // CODE -------------
+    this.reactiveForm.get('email').statusChanges.subscribe((status) => {
+      console.log(status)
+      this.formStatus = status
+    })
+  }
+
+  // ...
+} 
+```
+
+- Apply CSS class on form.
+  
+```html
+<section class="container" [ngClass]="formStatus">
+  ....
+</section>
+```
+
+```css
+.container.VALID{
+  border: green 3px solid;
+}
+.container.INVALID{
+  border: red 3px solid;
+}
+.container.PENDING{
+  border: orange 3px solid;
+}
+```
 
 
 
