@@ -208,6 +208,8 @@ export class AppComponent implements OnInit{
 } 
 ```
 
+---
+
 ## User-defined Custom Validator :
 
 - Custom validator is used to validate input data in a form control.
@@ -230,18 +232,79 @@ export class AppComponent implements OnInit{
 ```js
 import { FormControl } from "@angular/forms";
 
-export const noSpaceAllowed = (control: FormControl) => {
-    if(control.value != null && control.value.indexOf(' ') != -1){
-        // whatever value we return from here will be assigned to "errors" property of form control
-        return {noSpaceAllowed: true}
-    }
+// export const noSpaceAllowed = (control: FormControl) => {
+//     if(control.value != null && control.value.indexOf(' ') != -1){
+//         // whatever value we return from here will be assigned to "errors" property of form control
+//         return {noSpaceAllowed: true}
+//     }
+//     return null
+// }
 
-    return null
+export class CustomValidators{
+    static noSpaceAllowed(control: FormControl) {
+        if(control.value != null && control.value.indexOf(' ') != -1){
+            // whatever value we return from here will be assigned to "errors" property of form control
+            return {noSpaceAllowed: true}
+        }
+        return null
+    }
 }
 ```
 
+```js
+// app.component.ts
 
+import { CustomValidators } from './Validators/noSpaceAllowed.validator';
 
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null, [Validators.required, CustomValidators.noSpaceAllowed]),
+      lastname: new FormControl(null, [Validators.required, CustomValidators.noSpaceAllowed]),
+      // ....
+  }
+```
+
+![image](https://github.com/NikhilBagwe/web-dev-notes/assets/67143015/ebbfa4b5-9300-4779-b51f-2497698c2b32)
+
+---
+
+## Displaying custom error message for a particular validation :
+
+- Also done Null handling using Optional chaining "?." so that if  "reactiveForm.get('firstname').errors" expression returns null than further expression won't be evaluated.
+
+```html
+<form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnFormSubmitted()">
+    <div class="column">
+      <div class="input-box">
+        <input type="text" placeholder="First Name" formControlName="firstname" />
+
+        <small *ngIf="reactiveForm.get('firstname').errors?.['required'] && reactiveForm.get('firstname').touched">
+          *First name is a required field.
+        </small>
+
+        <small *ngIf="reactiveForm.get('firstname').errors?.['noSpaceAllowed'] && reactiveForm.get('firstname').touched">
+          *No space is allowed for First name.
+        </small>
+      </div>
+      .....
+</form>
+```
+
+---
+
+## Async Validator - Custom :
+
+- Used when we need to send an HTTP request to the server to check if the data entered in a form element is valid or not.
+- Eg: When a user is creating a username, it must be unique. Hence, we need to use async validator here to check if that username already exists in the DB or not.
+- Returns either a Promise or Observable.
+- Angular dosen't provide any built-in async validator. It only provides sync validators such as required, min, max, etc.
+- 
 
 
 
