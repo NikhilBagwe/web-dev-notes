@@ -345,6 +345,35 @@ input.ng-pending{
 }
 ```
 
+---
+---
+
+## valueChanges() event:
+
+- It is an event raised by Angular forms whenever the value of FormControl, FormGroup or FormArray changes.
+
+### Listening to FormControl:
+
+```js
+export class AppComponent implements OnInit{
+  reactiveForm: FormGroup;
+
+  ngOnInit() {
+    // Specify the form controls that our form needs
+    this.reactiveForm = new FormGroup({
+      firstname: new FormControl(null, [Validators.required, CustomValidators.noSpaceAllowed]),
+      // .....
+    })
+
+    // CODE -------------
+    this.reactiveForm.get('firstname').valueChanges.subscribe((value) => {
+      console.log(value)
+    })
+  }
+
+  // ...
+} 
+```
 
 
 
