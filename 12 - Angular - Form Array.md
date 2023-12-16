@@ -407,6 +407,7 @@ export class AppComponent implements OnInit{
 - Emits a string value which corresponds to "valid", invalid or pending.
 - Returns an observable.
 - Used to check valid/invalid status of form.
+- In below example we are using statusChange() event to know the status of FormGroup and accordingly applying border around the form.
 
 ```js
 export class AppComponent implements OnInit{
@@ -450,6 +451,35 @@ export class AppComponent implements OnInit{
   border: orange 3px solid;
 }
 ```
+
+---
+---
+
+## setValue() method:
+
+- Used to update the value of a FC, FG or FA.
+- We must pass an object in setValue() to update the value and that object must match the structure of FC, FG or FA which we are trying to update.
+- Eg: On clicking the "Create username" button, an username will be auto-generated using the firstname and lastname.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
