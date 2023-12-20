@@ -460,6 +460,7 @@ export class AppComponent implements OnInit{
 - Used to update the value of a FC, FG or FA.
 - We must pass an object in setValue() to update the value and that object must MATCH the structure of FC, FG or FA which we are trying to update.
 - Eg: In below code on clicking the "Create username" button, an username will be auto-generated using the firstname and lastname. The button will be disabled until the user enters the required data to generate username.
+- setValue() is used on a FormGroup.
 
 ```html
 <div class="column">
@@ -530,15 +531,118 @@ GenerateUserName(){
   }
 ```
 
+- Instead of passing the whole FormGroup object we can simply perform setValue of specific FormControl.
 
+```js
+this.reactiveForm.get('username').setValue(username)
+```
 
+---
+---
 
+## patchValue():
 
+- It is used to update only a subset of element of FormGroup or FormArray.
+- Only updates the matching objects and ignores the rest.
+- No need to pass the complete structure of form for updating just one value.
 
+```js
+this.reactiveForm.patchValue({
+  username: username,
+  address:{   // Updating a FormControl present inside a FormArray.
+    city: 'New Delhi'
+  }
+})
+```
 
+---
+---
 
+## Retrieving Form data:
 
+- In below code, On submit, read the values of all FormControls and log them.
 
+```js
+OnFormSubmitted(){
+  console.log(this.reactiveForm.value)
+}
+```
+
+- Below logs the data to UI on form submit.
+
+```js
+export class AppComponent implements OnInit{
+  title = 'template-driven-form';
+  formStatus: string = ''
+  formData: any = {}
+
+  // .....
+
+  OnFormSubmitted(){
+    console.log(this.reactiveForm.value)
+    this.formData = this.reactiveForm.value
+  }
+
+  // .....
+}
+```
+
+```html
+<section class="user-detail-container">
+  <div class="user-details-container">
+    <div class="user-avatar">
+      <p>{{formData.firstname?.slice(0,1)}}{{formData.lastname?.slice(0,1)}}</p>
+    </div>
+    <div class="user-details">
+      <div class="user-name">
+        <h2>{{formData.firstname}} {{formData.lastname}}</h2>
+      </div>
+      <p><b>Email:</b>{{formData.email}}</p>
+      <p><b>Username:</b>{{formData.username}}</p>
+      <p><b>Date of birth:</b>{{formData.dob}}</p>
+      <div class="user-name">
+        <h3>Address</h3>
+      </div>
+      <span>{{formData.address?.country}}</span>.
+      <span>{{formData.address?.city}}</span>.
+    </div>
+  </div>
+</section>
+```
+
+---
+---
+
+## Resetting Form:
+
+- Resets all the FCs to their initial state.
+- Pass an object similar to the FormGroup to preserve default value of certain FCs on reset.
+
+```js
+OnFormSubmitted(){
+    this.reactiveForm.reset({
+      firstname: null,
+      lastname: null,
+      email: null,
+      username: null,
+      dob: null,
+      gender: 'male',
+      address:{
+        street: null,
+        country: 'India',
+        city: null,
+        region: null,
+        postal: null
+      },
+      skills: [
+        null
+      ],
+      experience: [
+        
+      ]
+    })
+  }
+```
 
 
 
