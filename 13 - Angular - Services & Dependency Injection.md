@@ -4,3 +4,16 @@
 - Thus, now we would be required to write the same subscription logic multiple times for multiple components.
 
 ![image](https://github.com/NikhilBagwe/web-dev-notes/assets/67143015/a5983721-f74f-4694-81eb-232c84c2da95)
+
+- Following are some Disadvantages of above method: 
+1. It violates the DRY principle.
+2. Component class should only be responsible for showing UI to the user. It must not contain subscription logic as it is a part of Business logic.
+
+- The solution to above problem is to write the subscription logic in a different centralized file which can be accessed by all components. This can be acheived by using SERVICE in angular.
+- A Service is a re-usable TS class that can be used in multiple components across an Angular app.
+
+## Advantages of Service:
+
+- Service allows us to reuse a piece of code in multiple components.
+- Helps us to separate UI logic from Business logic.
+- Separation of concern is acheived.
