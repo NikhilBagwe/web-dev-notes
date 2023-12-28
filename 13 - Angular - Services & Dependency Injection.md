@@ -31,14 +31,16 @@
 
 ```js
 export class SubscribeService{
-    OnSubscribeClicked(){
-        alert("Thank you for subscribing the services.")
+    OnSubscribeClicked(type: string){
+        alert('Thank you for your '+ type +' subscription. You can access the services now.')
     }
 }
 ```
 - Calling the service in multiple components.
 
 ```js
+import { SubscribeService } from 'src/app/Services/subscribe.service';
+
 export class HeaderComponent {
   //......
 
@@ -47,12 +49,18 @@ export class HeaderComponent {
   
     // Calling a Service
     let subService = new SubscribeService()
-    subService.OnSubscribeClicked()
+    subService.OnSubscribeClicked('weekly')
   }
 }
 ```
 
+### Note:
 
+- Now here for using the service in a component, we are required to create an instance of the service everytime.
+- Thus we have made the component class dependent on service class resulting into TIGHT COUPLING.
+- So if service class is removed or modified, it will have an effect on component class.
+- Not a good practice.
+- Thus, we can ask Angular to inject an instance of this service class into component class i.e DEPENDECY INJECTION. 
 
 
 
