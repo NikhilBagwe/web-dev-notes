@@ -71,8 +71,27 @@ export class HeaderComponent {
 - Allows classes to configure the dependencies they need.
 - Angular has "Injector" tool using which we can inject an instance of a dependency in the class.
 
+```js
+import { SubscribeService } from 'src/app/Services/subscribe.service';
 
+@Component({
+  selector: 'app-hero',
+  templateUrl: './hero.component.html',
+  providers:[SubscribeService]
+})
+export class HeroComponent {
+  constructor(private subService: SubscribeService){
 
+  }
+  OnSubscribe(){
+    this.subService.OnSubscribeClicked('yearly')
+  }
+}
+```
+
+## Hierarchical DI:
+
+- 48.20
 
 
 
