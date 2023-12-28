@@ -56,13 +56,20 @@ export class HeaderComponent {
 
 ### Note:
 
-- Now here for using the service in a component, we are required to create an instance of the service everytime.
+- Now here for using the service in a component, we are required to create an instance of the service everytime for using it.
 - Thus we have made the component class dependent on service class resulting into TIGHT COUPLING.
 - So if service class is removed or modified, it will have an effect on component class.
 - Not a good practice.
-- Thus, we can ask Angular to inject an instance of this service class into component class i.e DEPENDECY INJECTION. 
+- Thus, we can ask Angular to inject an instance of the service class into component class i.e DEPENDECY INJECTION. 
 
+---
+---
 
+## Dependency Injection in Angular:
+
+- Wired into the Angular framework.
+- Allows classes to configure the dependencies they need.
+- Angular has "Injector" tool using which we can inject an instance of a dependency in the class.
 
 
 
