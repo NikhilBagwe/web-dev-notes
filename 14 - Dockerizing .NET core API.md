@@ -13,4 +13,10 @@
 ## Basics :
 
 - Instead of trying to manually setup/configuring server, we can use Docker.
-- Docker will essentially store all the information related to network configuration, permissions, software installed, etc. on local machine into a box. Then at the time of deployment, the box will pasted on the Server and same environment will ne recreated onto server.
+- Docker will essentially store all the information related to network configuration, permissions, software installed, etc. on local machine into a box (Docker Image). Then at the time of deployment, the box will pasted on the Server and same environment will ne recreated onto server.
+
+## Containerize an .NET web api:
+
+- Open the project in VSCode.
+- Create a file with name "Dockerfile" at root of the project.
+- So basically, we can create 2 boxes: One for Testing i.e "Base" (called as Staging) and second for "Prod".
