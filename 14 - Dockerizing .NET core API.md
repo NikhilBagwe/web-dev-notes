@@ -19,4 +19,42 @@
 
 - Open the project in VSCode.
 - Create a file with name "Dockerfile" at root of the project.
-- So basically, we can create 2 boxes: One for Testing i.e "Base" (called as Staging) and second for "Prod".
+- So basically, we can create 2 boxes: One for Testing i.e "Base" (called as Staging) and second for Prod i.e Build.
+
+```python
+# base image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS Base
+# Creating a folder
+WORKDIR /app
+# Exposing ports that will be utilize - http, https
+EXPOSE 8080 
+EXPOSE 8081
+
+# building the application
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# When the app will be built, it wil be build for "release"
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+
+# Add dependencies
+COPY ["MongoAPI.csproj", "MongoAPI/"] 
+
+RUN dotnet restore "MongoAPI.csproj"
+
+# copy rest of the source code from local directory to Docker image
+COPY  . .
+
+WORKDIR "/src/MongoAPI"
+RUN dotnet build "MongoAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "MongoAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish
+
+# final deployment
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT [ "dotnet", "MongoAPI.dll" ]
+```
+- Then install docker on system and run the above docker image in terminal : docker build -t mongoAPI .
